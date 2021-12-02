@@ -1,0 +1,15 @@
+untuk handle refresh agar data pada state tetap tersimpan
+- vuex-persistedstate
+- js-cookie
+
+
+
+datatable
+npm install --save jquery
+npm install --save datatables.net-bs5
+npm install --save datatables.net-autofill-bs5
+npm install --save datatables.net-buttons-bs5
+npm install --save datatables.net-responsive-bs5
+npm install --save datatables.net-scroller-bs5
+npm install --save datatables.net-searchbuilder-bs5
+npm install --save datatables.net-select-bs5

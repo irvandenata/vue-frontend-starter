@@ -3,17 +3,15 @@ import {
 } from 'vue'
 import App from './App.vue'
 import router from './router'
-// import VueCompositionApi from "@vue/composition-api"
-import store from './store'
+import {store} from './store'
+// import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
-import 'datatables.net-buttons-bs5'
 
-import '@fortawesome/fontawesome-free/css/all.css'
-import '@fortawesome/fontawesome-free/js/all.js'
 const app = createApp(App);
 app.use(router);
-
-// app.use(VueCompositionApi);
 app.use(store);
+// app.use(BootstrapVue);
+// app.use(IconsPlugin);
 app.mount("#app");
