@@ -1,12 +1,12 @@
 import { createRouter,createWebHistory } from "vue-router";
 const routes = [
-    {
+        {
 
            path:'/login',
            name: 'login',
            component:()=> import("../view/login/Index.vue")
           },
-  {
+         {
             path: '/admin',
             name: 'admin',
              component:()=> import("../view/admin/Index.vue"),
@@ -23,6 +23,22 @@ const routes = [
            path:'/admin/catagory',
            name: 'admin.category.index',
            component:()=> import("../view/admin/category/Index.vue")
+          },
+          {
+              meta:{
+               name:"TAG"
+              },
+           path:'/admin/tag',
+           name: 'admin.tag.index',
+           component:()=> import("../view/admin/tag/Index.vue")
+          },
+           {
+              meta:{
+               name:"CONTENT"
+              },
+           path:'/admin/content',
+           name: 'admin.content.index',
+           component:()=> import("../view/admin/content/Index.vue")
           },
      
                  ]

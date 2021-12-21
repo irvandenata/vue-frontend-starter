@@ -11,9 +11,12 @@ import 'datatables.net-buttons-bs5'
 
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
+import $ from 'jquery';
 const app = createApp(App);
 app.use(router);
 
+
 // app.use(VueCompositionApi);
 app.use(store);
+app.use($);
 app.mount("#app");

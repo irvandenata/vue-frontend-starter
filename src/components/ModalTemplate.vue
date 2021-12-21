@@ -6,7 +6,7 @@
     aria-labelledby="ModalLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog" :class="size">
       <div class="modal-content">
         <div class="modal-header">
           <slot name="title">{{ title }}</slot>
@@ -26,8 +26,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: { size: String },
+};
 </script>
 
-<style>
-</style>
+<style></style>

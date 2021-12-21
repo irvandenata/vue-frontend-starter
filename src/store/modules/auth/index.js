@@ -45,8 +45,7 @@ export default {
         "Content-Type": "application/json",
         Authorization: "Bearer " + r.data.access_token,
         }
-        commit('SET_HEADERS', headers)
-         
+        commit('SET_HEADERS', headers)   
         return r
       }
       else return 401
@@ -54,7 +53,6 @@ export default {
     },
   
     async logout({ commit ,state}) {
-     console.log(state.token)
      const headers = {
         "Content-Type": "application/json",
         Authorization: "Bearer " + state.token,

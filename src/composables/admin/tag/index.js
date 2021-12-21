@@ -3,20 +3,21 @@ import { useRouter } from "vue-router";
 import { showLoading, hideLoading } from "../../../utils/overlayLoading";
 import { toast,swalConfirm } from "../../../utils/sweatalert";
 
-export function showCategory(store){
+export function showTag(store){
  const render = ref(false);
     const datas = reactive({
       columns: [],
       entries: [],
     });
 
-    const getAllCategory = async () => {
+    const getAllTag = async () => {
+     
      const router = useRouter()
      const headers = store.state.auth.headers
       const response = await store
-        .dispatch("category/fetch",headers)
+        .dispatch("tag/fetch",headers)
         .then(async (r) => {
-           if(r.data.length >0){ 
+         if(r.data.length >0){ 
           datas.entries = await r.data.map(function (value) {
             value.attributes = Object.assign({ No: "" }, value.attributes);
             return value.attributes;
@@ -41,12 +42,12 @@ export function showCategory(store){
         });
       return response;
     };
-
-    const showAllCategory = async () => {
+     const showAllTag = async () => {
+     
      const router = useRouter()
      const headers = store.state.auth.headers
       const response = await store
-        .dispatch("category/fetch",headers)
+        .dispatch("tag/fetch",headers)
         .catch((er) => {
           console.log(er);
           store.dispatch("auth/logout")
@@ -55,23 +56,22 @@ export function showCategory(store){
           });
           router.push({ name: "login" });
         });
-        
       return response.data;
     };
     return {
-      getAllCategory,
+     getAllTag,
+     showAllTag,
       datas,
       render,
-      showAllCategory 
     }
 } 
 
-export function createCategory(store){
+export function createTag(store){
  const submit = async (item) => {
      showLoading();
      if(item.slug == '' | item.slug ==undefined  ){
        await store
-        .dispatch("category/create", item)
+        .dispatch("tag/create", item)
         .then(async () => {
           toast("Success Created!", "success");
         })
@@ -89,13 +89,13 @@ export function createCategory(store){
 }
 
 
-export function editCategory(store){ 
+export function editTag(store){ 
 const getData = async (slug) => {
      const result = reactive({
       data:''
      })
      await store
-        .dispatch("category/get", slug)
+        .dispatch("tag/get", slug)
         .then(async (r) => {
           result.data = r.data.data
         })
@@ -109,7 +109,7 @@ const getData = async (slug) => {
  const update = async (item) => {
      showLoading();
      await store
-        .dispatch("category/update",item)
+        .dispatch("tag/update",item)
         .then(async () => {
           toast("Success Updated!", "success");
         })
@@ -127,13 +127,13 @@ const getData = async (slug) => {
 
 }
 
-export function destroyCategory(store){
+export function destroyTag(store){
  const destroy = async (item) =>{
     const status = ref(false)
     const confirm = await swalConfirm(status)
     if(confirm){
       await store
-        .dispatch("category/destroy",item)
+        .dispatch("tag/destroy",item)
         .then(async () => {
          status.value = true
         })

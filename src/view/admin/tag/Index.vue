@@ -39,14 +39,16 @@
       </div>
     </div>
   </div>
-  <modal-component :size="sizeModal">
+  <modal-component>
     <template v-slot:title>
-      <h5 class="modal-title" id="ModalLabel">{{ title }} Category</h5>
+      <h5 class="modal-title" id="ModalLabel">
+        {{ title }} {{ $route.meta.name }}
+      </h5>
     </template>
 
     <form method="PATCH" @submit.prevent="send">
       <div class="form-group">
-        <label for="exampleInputEmail1">Name Category</label>
+        <label for="exampleInputEmail1">Name {{ $route.meta.name }}</label>
         <input
           type="text"
           class="form-control"
@@ -86,11 +88,11 @@ import TableData from "../../../components/table/TableData.vue";
 import Modal from "../../../components/ModalTemplate.vue";
 import { reactive, ref } from "vue";
 import {
-  showCategory,
-  createCategory,
-  editCategory,
-  destroyCategory,
-} from "../../../composables/admin/category";
+  showTag,
+  createTag,
+  editTag,
+  destroyTag,
+} from "../../../composables/admin/tag";
 import { useStore } from "vuex";
 export default {
   components: {
@@ -98,22 +100,21 @@ export default {
     "modal-component": Modal,
   },
   setup() {
-    const sizeModal = "modal-lg";
     const statusForm = ref("create");
     const form = reactive({
       data: {},
     });
     const title = ref("create");
     const store = useStore();
-    const { getAllCategory, datas, render } = showCategory(store);
-    const { submit } = createCategory(store);
-    const { getData, update } = editCategory(store);
-    const { destroy } = destroyCategory(store);
+    const { getAllTag, datas, render } = showTag(store);
+    const { submit } = createTag(store);
+    const { getData, update } = editTag(store);
+    const { destroy } = destroyTag(store);
 
-    getAllCategory();
+    getAllTag();
     const refresh = async () => {
       render.value = false;
-      await getAllCategory();
+      await getAllTag();
       render.value = true;
     };
 
@@ -150,11 +151,10 @@ export default {
       submit,
       get,
       create,
-      getAllCategory,
+      getAllTag,
       datas,
       form,
       send,
-      sizeModal,
       render,
       refresh,
       title,

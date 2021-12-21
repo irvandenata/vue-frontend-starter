@@ -1,0 +1,6 @@
+putih : F6F8FD
+
+untuk copas harus ubah
+- store
+- composable
+- api

@@ -55,9 +55,48 @@ export default {
                 data =
                   data +
                   '<div class="links">' +
-                  "<button  data-bs-toggle='modal' class='btn btn-warning btn-sm'     data-bs-target='#Modal'  id='edit'>Edit</button> " +
+                  "<button  data-bs-toggle='modal' class='btn mb-1 btn-warning btn-sm'  id='edit'>Edit</button> " +
                   "<button id='destroy' class='btn btn-sm btn-danger'>Trash</button> " +
                   "</div>";
+              }
+              return data;
+            },
+          },
+          {
+            targets: 3,
+            render: function (data, type, row) {
+              if (type === "display") {
+                data =
+                  row.status == 1
+                    ? "<div  class='btn btn-sm btn-success'>Publish</div> "
+                    : "<div  class='btn btn-sm btn-secondary'>Draft</div> ";
+              }
+              return data;
+            },
+          },
+          {
+            targets: 2,
+            render: function (data, type) {
+              if (type === "display") {
+                data =
+                  data && data.length > 20
+                    ? data.slice(0, 20).split(" ").slice(0, -1).join(" ") +
+                      "..."
+                    : data;
+              }
+              return data;
+            },
+          },
+          {
+            targets: 7,
+            render: function (data, type) {
+              if (type === "display") {
+                data =
+                  data.length > 0
+                    ? data.map(function (value) {
+                        return value.name + " ";
+                      })
+                    : "-";
               }
               return data;
             },
