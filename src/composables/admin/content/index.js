@@ -1,5 +1,5 @@
 import { reactive, ref} from "vue";
-// import { useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { showLoading, hideLoading } from "../../../utils/overlayLoading";
 import { toast,swalConfirm } from "../../../utils/sweatalert";
 
@@ -11,7 +11,7 @@ export function showContent(store){
     });
 
     const getAllContent = async () => {
-     // const router = useRouter()
+     const router = useRouter()
      const headers = store.state.auth.headers
       const response = await store
         .dispatch("content/fetch",headers)
@@ -28,16 +28,15 @@ export function showContent(store){
               data: value,
             };
           });}
-         
           render.value = 'index';
         })
         .catch((er) => {
           console.log(er);
-          // store.dispatch("auth/logout")
-          // .catch(() => {
-          // router.push({ name: "login" });
-          // });
-          // router.push({ name: "login" });
+          store.dispatch("auth/logout")
+          .catch(() => {
+          router.push({ name: "login" });
+          });
+          router.push({ name: "login" });
         });
       return response;
     };
@@ -51,29 +50,14 @@ export function showContent(store){
 export function createContent(store){
  const submit = async () => {
       const slug = ref(); 
-     // showLoading();
-     // if(item.slug == '' | item.slug ==undefined  ){
-     //   await store
-     //    .dispatch("content/create", item)
-     //    .then(async () => {
-     //      toast("Success Created!", "success");
-     //    })
-     //    .catch((er) => {
-     //      console.log(er);
-     //      hideLoading();
-     //    });
-     // }   
-      // hideLoading();
       await store
         .dispatch("content/create")
         .then(async (r) => {
          slug.value= r.data.data.attributes.slug
          console.log(r.data.data)
-          // toast("Success Created!", "success");
         })
         .catch((er) => {
           console.log(er);
-          // hideLoading();
         });
         return slug;
     }
